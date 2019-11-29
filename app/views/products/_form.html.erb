@@ -1,3 +1,5 @@
+<%= render partial: 'layouts/errors', locals: {object: @product} %>
+
 <%= form_for(@product) do |f| %>
     <div>
         <%= f.label :active_ingredient %><br>
