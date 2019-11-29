@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
   resources :application_areas
   resources :chem_groups
   resources :users
