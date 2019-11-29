@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
     def create
         #google omniauth2 login
-        if params [:provider]
+        if params[:provider]
             @user = User.create_by_google_omniauth(auth)
             session[:user_id] = @user.id
         else
