@@ -1,0 +1,2 @@
+class ChemGroup < ApplicationRecord
+end
