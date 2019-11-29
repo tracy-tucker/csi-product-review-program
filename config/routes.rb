@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback' => 'sessions#omniauth'
 
   resources :reviews
-  resources :products
+  resources :products do
+    resources :reviews, only: [:new, :index] #this is creating the path /products/1/reviews/new or index
+  end
   resources :application_areas
   resources :chem_groups
   resources :users

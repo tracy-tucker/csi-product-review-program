@@ -1,0 +1,11 @@
+<p><%= flash[:error] %></p>
+
+<h1>All the Products</h1>
+
+<% @products.each do |product| %>
+
+    <h2><%= link_to product.active_ingredient, product_path(product.id) %> - Average Rating: <%= product.average_rating %></h2>
+    <h3><%= product.chem_group.name %> - <%= product.application_area.area_name %></h3>
+    <!--<%= link_to "Post a review", new_product_review_path(product)%> -->
+    <p><%= product.description %></p>
+<% end %>

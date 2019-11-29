@@ -1,3 +1,15 @@
-<h1>Edit your Product</h1>
+<h1><%= @product.active_ingredient %></h1>
 
-<%= render partial: 'form' %>
+<% if @product.image.attached? %>
+    <%= image_tag url_for(@product.image) %>
+<% end %>
+
+<h2><%= @product.chem_group.name %></h2>
+
+<p><%= @product.description %></p>
+
+<h3>Added by - <%= link_to @product.user.username, user_path(@product.user) %></h3>
+
+<%= link_to "Edit #{@product.active_ingredient}", edit_product_path(@product) if @product.user == current_user %>
+<br>
+<%= link_to "See all Reviews for", product_reviews_path(@product) %>
