@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get '/' => 'sessions#welcome'
+  get '/login' => 'sessions#new' #existing user needs a session
+  post '/login' => 'sessions#create'
+
   resources :reviews
   resources :products
   resources :application_areas
