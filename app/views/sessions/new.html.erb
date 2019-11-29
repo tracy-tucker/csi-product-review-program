@@ -1,0 +1,15 @@
+<h1>Login!</h1>
+
+<p>
+<%= flash[:error] %>
+</p>
+
+<%= form_for(:user) do |f| %> <!-- finding an already existing user, :user -->
+    <%= f.label :username %><br>
+    <%= f.text_field :username %><br>
+
+    <%= f.label :password %><br>    <!-- NOT password_digest bc we would be setting the pword to be a raw string -->
+    <%= f.password_field :password %><br>
+
+    <%= f.submit "Log In" %>
+<% end %>
