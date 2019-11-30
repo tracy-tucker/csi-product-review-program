@@ -1,0 +1,7 @@
+<h1>All Chemical Groups</h1>
+
+<ul>
+    <% @chem_groups.each do |chem| %>
+        <li><%= chem.name %> - <%= chem_group.chem_number%></li>
+    <% end %>
+</ul>
