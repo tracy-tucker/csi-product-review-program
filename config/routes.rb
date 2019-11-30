@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy' #NOT get because anyone can "request" that URL
 
   get 'products/most_reviews' => 'products#most_reviews'
+  get 'users/user_most_reviews' => 'users#user_most_reviews'
 
   get '/auth/google_oauth2/callback' => 'sessions#omniauth'
 

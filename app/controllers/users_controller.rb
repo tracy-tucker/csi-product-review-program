@@ -20,6 +20,10 @@ class UsersController < ApplicationController
         redirect_to '/' if !@user #if user doesn't exist, goes home
     end
 
+    def user_most_reviews
+        @user = User.user_most_reviews.first
+    end
+
     private
 
     def user_params

@@ -2,7 +2,8 @@
 
 <h1>All Reviews</h1>
 
-<%= link_to "Add new review", new_review_path(@review) if logged_in? %>
+<%= link_to "Add new review", new_review_path(@review) if logged_in? %> |
+<%= link_to "See user with most reviews", users_user_most_reviews_url %>
 
 <ul>
     <% @reviews.each do |review| %>
