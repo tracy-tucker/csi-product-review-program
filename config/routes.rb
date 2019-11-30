@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new' #a new user needs to be created before it has a session
   post '/signup' => 'users#create'
+  delete '/logout' => 'sessions#destroy' #NOT get because anyone can "request" that URL
 
   get '/auth/google_oauth2/callback' => 'sessions#omniauth'
 
@@ -12,8 +13,10 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews, only: [:new, :index] #this is creating the path /products/1/reviews/new or index
   end
-  resources :application_areas
-  resources :chem_groups
-  resources :users
+  resources :application_areas, only: [:index]
+  resources :chem_groups, only: [:index]
+  resources :users, only: [:new, :create, :show]
+
+  match '*path', via: :all, to: redirect('/404')
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

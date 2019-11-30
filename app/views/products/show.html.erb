@@ -1,15 +1,23 @@
-<h1><%= @product.active_ingredient %></h1>
+<p><%= flash[:error] %></p>
+
+<h1><%= @product.name %></h1>
 
 <% if @product.image.attached? %>
     <%= image_tag url_for(@product.image) %>
 <% end %>
 
-<h2><%= @product.chem_group.name %></h2>
+<h2><%= @product.active_ingredient %></h2>
+<h3><%= @product.chem_group.name %></h3>
+<h3><%= @product.application_area.area_name %></h3>
 
 <p><%= @product.description %></p>
 
 <h3>Added by - <%= link_to @product.user.username, user_path(@product.user) %></h3>
 
-<%= link_to "Edit #{@product.active_ingredient}", edit_product_path(@product) if @product.user == current_user %>
-<br>
-<%= link_to "See all Reviews for", product_reviews_path(@product) %>
+<div>
+<h4>Available Actions:</h4>
+<p><%= link_to "Edit #{@product.name}", edit_product_path(@product) if @product.user == current_user %></p>
+<p><%= link_to "Delete #{@product.name}", product_path(@product), data: {confirm: 'Are you sure?'}, method: :delete if @product.user == current_user %></p>
+<p><%= link_to "Leave Review", new_product_review_path(@product) %></p>
+<p><%= link_to "See all Reviews for #{@product.name}", product_reviews_path(@product) %></p>
+</div>

@@ -9,14 +9,16 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :application_area
 
   validates :active_ingredient, presence: true
+  validates :application_area, presence: true
   validates :description, presence: true
+  validates :name, presence: true
   validate :not_a_duplicate #checking for what we DON'T WANT
   
   #scope model method - changing the view of the collection
   scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(rating) desc')}
   
   def self.alpha
-    order(:active_ingredient)
+    order(:name)
   end
 
   #scope method
@@ -39,16 +41,16 @@ class Product < ApplicationRecord
     self.application_area
   end
 
-  #if there is already a product with that active_ingredient && chem_group, give error
+  #if there is already a product with that name && chem_group, give error
   def not_a_duplicate
     #calling the instance of the attribute [string/integer: key]
-      if Product.find_by(active_ingredient: active_ingredient, chem_group_id: chem_group_id)
-        errors.add(:active_ingredient, 'has already been created for that Chemical Group')
+      if Product.find_by(name: name, chem_group_id: chem_group_id)
+        errors.add(:name, 'has already been created for that Chemical Group')
       end
     end
   
-    def act_in_and_chem_group
-      "#{active_ingredient} - #{chem_group.name}"
+    def name_and_chem_group
+      "#{name} - #{chem_group.name}"
     end
 
 end

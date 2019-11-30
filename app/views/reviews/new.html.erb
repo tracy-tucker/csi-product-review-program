@@ -9,7 +9,7 @@
     <% else %>
         <div>
             <%= f.label :product_id, "Select a Product" %>
-            <%= f.collection_select :product_id, Product.alpha, :id, :act_in_and_chem_group, include_blank: true %>
+            <%= f.collection_select :product_id, Product.alpha, :id, :name_and_chem_group, include_blank: true %>
         </div>
     <% end %>
 

@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
     end
 
     def edit
-        @product = Product.find_by(id: params[:id])
+        find_product
         1.times {@product.build_chem_group}
         if @product.user != current_user
             flash[:error] = "Sorry, you can only edit your own products"
@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
     end
 
     def update
-        @product = Product.find_by(id: params[:id])
+        find_product
         if @product.update(product_params)
             redirect_to product_path(@product)
         else
@@ -44,12 +44,23 @@ class ProductsController < ApplicationController
     end
 
     def index
-        @products = Product.order_by_rating.includes(:chem_group)
+        @products = Product.order_by_rating
     end
 
     def show
-        @product = Product.find_by(id: params[:id])
+        find_product
         @user = User.find_by(id: params[:user])
+    end
+
+    def destroy
+        find_product
+        if logged_in?
+            @product.destroy
+            redirect_to products_path, notice: 'Product successfully deleted.'
+        else
+            flash[:error] = "Sorry, you can only delete your own products"
+            render product_path(@product)
+        end
     end
 
     private
@@ -57,6 +68,10 @@ class ProductsController < ApplicationController
     def product_params
         params.require(:product).permit(:name, :description, :active_ingredient, :image, :chem_group_id, :application_area_id, chem_group_attributes: [:id, :name], application_area_attributes: [:id, :area_name])
         #chem_group_id and chem_group_attributes [:name] is permitting elements from new product form
+    end
+
+    def find_product
+        @product = Product.find_by(id: params[:id])
     end
 
 end

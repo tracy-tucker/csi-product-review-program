@@ -1,7 +1,7 @@
 <h1>All Chemical Groups</h1>
 
-<ul>
+<div>
     <% @chem_groups.each do |chem| %>
-        <li><%= chem.name %> - <%= chem_group.chem_number%></li>
+        <h2><%= chem.name %></h2>
     <% end %>
-</ul>
+</div>
