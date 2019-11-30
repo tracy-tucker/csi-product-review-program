@@ -16,6 +16,7 @@ class Product < ApplicationRecord
   
   #scope model method - changing the view of the collection
   scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(rating) desc')}
+  scope :most_reviews, -> {joins(:reviews).group('reviews.product_id').order("count(reviews.product_id) desc").limit(1)}
   
   def self.alpha
     order(:name)

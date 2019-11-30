@@ -52,6 +52,10 @@ class ProductsController < ApplicationController
         @user = User.find_by(id: params[:user])
     end
 
+    def most_reviews
+        @product = Product.most_reviews.first
+    end
+
     def destroy
         find_product
         if logged_in?

@@ -2,7 +2,8 @@
 
 <h1>All the Products</h1>
 
-<%= link_to "Add new product", new_product_path(@product) if logged_in? %>
+<%= link_to "Add new product", new_product_path(@product) if logged_in? %> |
+<%= link_to "See product with most reviews", products_most_reviews_url %>
 
 <% @products.each do |product| %>
 
