@@ -13,6 +13,11 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :name, presence: true
   validate :not_a_duplicate #checking for what we DON'T WANT
+  after_validation :set_slug, only: [:create, :update]
+
+  def to_param
+    "#{id}-#{slug}"
+  end
   
   #scope model method - changing the view of the collection
   scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(rating) desc')}
@@ -52,6 +57,12 @@ class Product < ApplicationRecord
   
     def name_and_chem_group
       "#{name} - #{chem_group.name}"
+    end
+
+    private
+    
+    def set_slug
+      self.slug = name.to_s.parameterize
     end
 
 end
