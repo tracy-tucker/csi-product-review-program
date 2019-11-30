@@ -3,3 +3,8 @@
 <p><%= @review.content %></p>
 
 <h3>Added by - <%= link_to @review.user.username, user_path(@review.user) %></h3>
+
+<div>
+<h4>Available Actions:</h4>
+<p><%= link_to "Delete this Review", review_path(@review), data: {confirm: 'Are you sure?'}, method: :delete if @review.user == current_user %></p>
+</div>

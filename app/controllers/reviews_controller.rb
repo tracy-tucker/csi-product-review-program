@@ -37,6 +37,17 @@ class ReviewsController < ApplicationController
         @review = Review.find_by_id(params[:id])
     end
 
+    def destroy
+        @review = Review.find_by(id: params[:id])
+        if logged_in?
+            @review.destroy
+            redirect_to reviews_path, notice: 'Review successfully deleted.'
+        else
+            flash[:error] = "Sorry, you can only delete your own reviews"
+            render review_path(@review)
+        end
+    end
+
     private
 
     def review_params
