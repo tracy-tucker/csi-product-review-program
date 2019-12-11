@@ -19,7 +19,9 @@
     </div>
     <div>
         <p>Select a Chemical Group:</p>
-        <%= f.collection_select :chem_group_id, ChemGroup.all, :id, :name, include_blank: 'Select One', selected: @product.chem_group, value: @product.chem_group.name %>
+        <% byebug %>
+        <%= f.collection_select :chem_group_id, ChemGroup.all, :id, :name, selected: @product.chem_group, value: @product.chem_group.name %>
+         
     </div>
     <div>
         <p>Or, create a new Chemical Group:</p>

@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   validates :application_area, presence: true
   validates :description, presence: true
   validates :name, presence: true
-  validate :not_a_duplicate #checking for what we DON'T WANT
+  # validate :not_a_duplicate #checking for what we DON'T WANT
   after_validation :set_slug, only: [:create, :update]
 
   def to_param

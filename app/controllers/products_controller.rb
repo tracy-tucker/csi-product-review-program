@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
 
     def edit
         find_product
-        1.times {@product.build_chem_group}
+        # @product.build_chem_group
         if @product.user != current_user
             flash[:error] = "Sorry, you can only edit your own products"
             redirect_to products_path
