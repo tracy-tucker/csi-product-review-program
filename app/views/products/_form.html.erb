@@ -19,10 +19,10 @@
     </div>
     <div>
         <p>Select a Chemical Group:</p>
-        <% byebug %>
-        <%= f.collection_select :chem_group_id, ChemGroup.all, :id, :name, selected: @product.chem_group, value: @product.chem_group.name %>
+        <%= f.collection_select :chem_group_id, ChemGroup.all, :id, :name, value: @product.chem_group.name, include_blank: 'Select One', selected: @product.chem_group.id %>
          
     </div>
+    <% if !@product.chem_group_id.present? %>
     <div>
         <p>Or, create a new Chemical Group:</p>
         <!-- NESTED FORM! User writing attributes for another object. Use fields_for -->
@@ -31,10 +31,12 @@
             <%= cg.text_field :name %>
         <% end %>
     </div>
+    <% end %>
     <div>
         <p>Select an Application Area:</p>
-        <%= f.collection_select :application_area_id, ApplicationArea.all, :id, :area_name, include_blank: 'Select One', selected: @product.application_area, value: @product.application_area.area_name %>
+        <%= f.collection_select :application_area_id, ApplicationArea.all, :id, :area_name, value: @product.application_area.area_name, include_blank: 'Select One', selected: @product.application_area.id %>
     </div>
+    <% if !@product.application_area_id.present? %>
     <div>
         <p>Or, create a new Application Area:</p>
         <!-- NESTED FORM! User writing attributes for another object. Use fields_for -->
@@ -43,6 +45,7 @@
             <%=aa.text_field :area_name %>
         <% end %>
     </div>
+    <% end %>
     <br>
     <%= f.submit "Save" %>
 <% end %>

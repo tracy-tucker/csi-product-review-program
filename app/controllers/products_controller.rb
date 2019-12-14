@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
     def new
         if logged_in?
             @product = Product.new
-            1.times {@product.build_chem_group} #for the nested form. Builds the chem_group attributes
+            @product.build_chem_group #for the nested form. Builds the chem_group attributes
             @product.build_application_area
         else
             flash[:error] = "Sorry, you must be logged in to create a new product."
@@ -26,8 +26,10 @@ class ProductsController < ApplicationController
     end
 
     def edit
+        #The "create a new chem_group" needs to be blank. It's pre-filling with the existing chem group
+        #It needs to be either/or. Use the same chem_group and keep "new" blank OR create new chem_group and dump
+        #the already existing one.
         find_product
-        # @product.build_chem_group
         if @product.user != current_user
             flash[:error] = "Sorry, you can only edit your own products"
             redirect_to products_path

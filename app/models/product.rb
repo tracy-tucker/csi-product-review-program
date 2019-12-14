@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   validates :application_area, presence: true
   validates :description, presence: true
   validates :name, presence: true
-  # validate :not_a_duplicate #checking for what we DON'T WANT
+  validate :not_a_duplicate #checking for what we DON'T WANT
   after_validation :set_slug, only: [:create, :update]
 
   def to_param
@@ -47,12 +47,17 @@ class Product < ApplicationRecord
     self.application_area
   end
 
+  def thumbnail
+    self.image.variant(resize: "100x100")
+  end
+
   #if there is already a product with that name && chem_group, give error
   def not_a_duplicate
     #calling the instance of the attribute [string/integer: key]
-      if Product.find_by(name: name, chem_group_id: chem_group_id)
+      product = Product.find_by(name: name, chem_group_id: chem_group_id)
+      if !!product && product != self
         errors.add(:name, 'has already been created for that Chemical Group')
-    #NEED TO REWORK VALIDATION TO CHECK OF OBJECT FOUND IN VALIDATION ISN'T THE
+    #NEED TO REWORK VALIDATION TO CHECK IF OBJECT FOUND IN VALIDATION ISN'T THE
     #ONE YOU'RE EDITING BUT WAS PREVIOUSLY SAVED.
       end
     end
