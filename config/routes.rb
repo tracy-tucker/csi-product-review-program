@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews, only: [:new, :index] #this is creating the path /products/1/reviews/new or index
   end
-  resources :application_areas, only: [:index]
-  resources :chem_groups, only: [:index]
+  resources :application_areas, only: [:index, :new, :create]
+  resources :chem_groups, only: [:index, :new, :create]
   resources :users, only: [:new, :create, :show]
 
   match '*path', via: :all, to: redirect('/404')

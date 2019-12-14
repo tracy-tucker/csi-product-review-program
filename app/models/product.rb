@@ -57,8 +57,6 @@ class Product < ApplicationRecord
       product = Product.find_by(name: name, chem_group_id: chem_group_id)
       if !!product && product != self
         errors.add(:name, 'has already been created for that Chemical Group')
-    #NEED TO REWORK VALIDATION TO CHECK IF OBJECT FOUND IN VALIDATION ISN'T THE
-    #ONE YOU'RE EDITING BUT WAS PREVIOUSLY SAVED.
       end
     end
   
