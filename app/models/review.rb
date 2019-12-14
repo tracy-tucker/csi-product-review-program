@@ -8,7 +8,7 @@ class Review < ApplicationRecord
   # if user 1 has already reviewed this product, user will see error
   validates :product, uniqueness: {scope: :user, message: "has already been reviewed by you."}
   
-  after_validation :set_slug, only: [:create, :update]
+  after_validation :set_slug, only: [:create, :update, :show]
 
   def to_param
     "#{id}-#{slug}"

@@ -13,7 +13,7 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :name, presence: true
   validate :not_a_duplicate #checking for what we DON'T WANT
-  after_validation :set_slug, only: [:create, :update]
+  after_validation :set_slug, only: [:create, :update, :show]
 
   def to_param
     "#{id}-#{slug}"

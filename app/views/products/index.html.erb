@@ -6,7 +6,7 @@
 <%= link_to "See product with most reviews", products_most_reviews_url %>
 
 <% @products.each do |product| %>
-    <h2><%= link_to product.name, product_path(product.id) %> - Average Rating: <%= product.average_rating %></h2>
+    <h2><%= link_to product.name, product_path(product) %> - Average Rating: <%= product.average_rating %></h2>
     <% if product.image.attached? %>
         <%= image_tag url_for(product.thumbnail)%>
     <% end %>
