@@ -1,5 +1,7 @@
 <h1>All Chemical Groups</h1>
 
+<%= link_to "Add new chemical group", new_chem_group_path(@chem_group) if logged_in? %>
+
 <div>
     <% @chem_groups.each do |chem| %>
         <h2><%= chem.name %></h2>
