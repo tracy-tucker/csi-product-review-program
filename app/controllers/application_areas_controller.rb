@@ -8,7 +8,7 @@ class ApplicationAreasController < ApplicationController
         if logged_in?
             @application_area = ApplicationArea.new
         else
-            flash[:error] = "Sorry, you must be logged in to create a new chemical group."
+            flash[:error] = "Sorry, you must be logged in to create a new application area."
             redirect_to application_areas_path
         end
     end

@@ -2,5 +2,16 @@
 
 <%= render partial: 'layouts/errors', locals: {object: @chem_group} %>
 
+<%= form_for(@chem_group) do |f| %>
+
+    <div>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %><br>
+    </div>
+
+    <%= f.submit "Submit" %>
+
+<% end %>
+
 
 

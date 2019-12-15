@@ -1,0 +1,9 @@
+<h1>All Application Areas</h1>
+
+<%= link_to "Add new application area", new_application_area_path(@application_area) if logged_in? %>
+
+<div>
+    <% @application_areas.each do |app| %>
+        <h2><%= app.area_name %></h2>
+    <% end %>
+</div>

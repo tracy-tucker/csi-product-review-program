@@ -1,0 +1,14 @@
+<h1>Create a Application Area</h1>
+
+<%= render partial: 'layouts/errors', locals: {object: @application_area} %>
+
+<%= form_for(@application_area) do |f| %>
+
+    <div>
+        <%= f.label :area_name %><br>
+        <%= f.text_field :area_name %><br>
+    </div>
+
+    <%= f.submit "Submit" %>
+
+<% end %>
