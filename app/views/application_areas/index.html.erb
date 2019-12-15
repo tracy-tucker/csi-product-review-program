@@ -1,5 +1,7 @@
 <h1>All Application Areas</h1>
 
+<p><%= flash[:error] %></p>
+
 <%= link_to "Add new application area", new_application_area_path(@application_area) if logged_in? %>
 
 <div>

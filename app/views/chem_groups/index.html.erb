@@ -1,5 +1,7 @@
 <h1>All Chemical Groups</h1>
 
+<p><%= flash[:error] %></p>
+
 <%= link_to "Add new chemical group", new_chem_group_path(@chem_group) if logged_in? %>
 
 <div>
