@@ -1,0 +1,11 @@
+<h1>All Categories</h1>
+
+<p><%= flash[:error] %></p>
+
+<%= link_to "Add new category", new_category_path(@category) if logged_in? %>
+
+<div>
+    <% @categories.each do |cat| %>
+        <h2><%= cat.name %></h2>
+    <% end %>
+</div>
