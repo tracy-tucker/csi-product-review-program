@@ -1,0 +1,14 @@
+<h1>Create a Category</h1>
+
+<%= render partial: 'layouts/errors', locals: {object: @category} %>
+
+<%= form_for(@category) do |f| %>
+
+    <div>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %><br>
+    </div>
+
+    <%= f.submit "Submit" %>
+
+<% end %>
