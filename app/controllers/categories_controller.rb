@@ -2,6 +2,9 @@ class CategoriesController < ApplicationController
     def index
         @categories = Category.all
     end
+
+    def show
+    end
     
     def new
         if logged_in?
@@ -26,6 +29,10 @@ class CategoriesController < ApplicationController
 
     def category_params
         params.require(:category).permit(:name)
+    end
+
+    def find_category
+        @category = Category.find_by(id: params[:id])
     end
 
 end
