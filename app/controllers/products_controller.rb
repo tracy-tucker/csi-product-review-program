@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
             @product = Product.new
             @product.build_chem_group #for the nested form. Builds the chem_group attributes
             @product.build_application_area
+            @product.build_category
         else
             flash[:error] = "Sorry, you must be logged in to create a new product."
             redirect_to products_path
@@ -21,6 +22,7 @@ class ProductsController < ApplicationController
         else
             @product.build_chem_group
             @product.build_application_area
+            @product.build_category
             render :new
         end
     end
@@ -72,7 +74,7 @@ class ProductsController < ApplicationController
     private
 
     def product_params
-        params.require(:product).permit(:name, :description, :active_ingredient, :image, :chem_group_id, :application_area_id, chem_group_attributes: [:id, :name], application_area_attributes: [:id, :area_name])
+        params.require(:product).permit(:name, :description, :active_ingredient, :image, :chem_group_id, :application_area_id, :category_id, chem_group_attributes: [:id, :name], application_area_attributes: [:id, :area_name], category_attributes: [:id, :name])
         #chem_group_id and chem_group_attributes [:name] is permitting elements from new product form
     end
 

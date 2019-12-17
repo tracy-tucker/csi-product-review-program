@@ -48,6 +48,11 @@ class Product < ApplicationRecord
     self.application_area
   end
 
+  def category_attributes=(attributes)
+    self.category = Category.find_or_create_by(attributes) if !attributes['name'].empty?
+    self.category
+  end
+
   def thumbnail
     self.image.variant(resize: "100x100")
   end

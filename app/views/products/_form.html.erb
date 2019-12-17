@@ -17,6 +17,23 @@
         <%= f.label :image %><br>
         <%= f.file_field :image %><br>
     </div>
+<!--  ADDED CATEGORIES -->
+    <div>
+        <p>Select a Category:</p>
+        <%= f.collection_select :category_id, Category.all, :id, :name, value: @product.category.name, include_blank: 'Select One', selected: @product.category.id %>
+         
+    </div>
+    <% if !@product.category_id.present? %>
+    <div>
+        <p>Or, create a new Category:</p>
+        <!-- NESTED FORM! User writing attributes for another object. Use fields_for -->
+        <%= f.fields_for :category do |cat| %>
+            <%= cat.label :name %>
+            <%= cat.text_field :name %>
+        <% end %>
+    </div>
+    <% end %>
+
     <div>
         <p>Select a Chemical Group:</p>
         <%= f.collection_select :chem_group_id, ChemGroup.all, :id, :name, value: @product.chem_group.name, include_blank: 'Select One', selected: @product.chem_group.id %>
