@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :application_areas, only: [:index, :new, :create]
   resources :chem_groups, only: [:index, :new, :create]
+  resources :categories, only: [:index, :new, :create, :show]
   resources :users, only: [:new, :create, :show]
 
   match '*path', via: :all, to: redirect('/404')
