@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
     end
 
     def show
+        find_category
     end
     
     def new

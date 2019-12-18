@@ -6,6 +6,6 @@
 
 <div>
     <% @categories.each do |cat| %>
-        <h2><%= cat.name %></h2>
+        <h2><%= link_to cat.name, category_path(cat.id) %></h2>
     <% end %>
 </div>
